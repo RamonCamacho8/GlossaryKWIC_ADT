@@ -1,7 +1,7 @@
 package com.glossarykwic_adt;
 
 import com.glossarykwic_adt.Modules.IModule;
-import com.glossarykwic_adt.Modules.InputModule;
+
 import com.glossarykwic_adt.Modules.OutputModule;
 
 import java.util.ArrayList;
@@ -14,11 +14,12 @@ public class MasterControl {
     private ArrayList<IModule> modules;
     
     public MasterControl( ) {
-        modules = new ArrayList<IModule>();
-        modules.add( new InputModule());
-        modules.add( new CircularShiftModule());
-        modules.add( new AlphabetizerModule());
-        modules.add( new OutputModule());
+        
+    
+        modules.add(new CircularShiftModule());
+        modules.add(new AlphabetizerModule());
+        modules.add(new OutputModule());
+
     }
 
 
