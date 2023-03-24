@@ -1,4 +1,4 @@
-package com.glossarykwic;
+package com.glossarykwic_adt;
 
 import java.io.File;
 import java.io.IOException;

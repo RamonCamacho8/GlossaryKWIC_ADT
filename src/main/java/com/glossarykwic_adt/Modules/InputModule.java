@@ -1,4 +1,4 @@
-package com.glossarykwic.Modules;
+package com.glossarykwic_adt.Modules;
 
 public class InputModule extends IModule{
 

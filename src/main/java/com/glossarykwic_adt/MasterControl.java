@@ -1,13 +1,13 @@
-package com.glossarykwic;
+package com.glossarykwic_adt;
 
-import com.glossarykwic.Modules.IModule;
-import com.glossarykwic.Modules.InputModule;
-import com.glossarykwic.Modules.OutputModule;
+import com.glossarykwic_adt.Modules.IModule;
+import com.glossarykwic_adt.Modules.InputModule;
+import com.glossarykwic_adt.Modules.OutputModule;
 
 import java.util.ArrayList;
 
-import com.glossarykwic.Modules.AlphabetizerModule;
-import com.glossarykwic.Modules.CircularShiftModule;
+import com.glossarykwic_adt.Modules.AlphabetizerModule;
+import com.glossarykwic_adt.Modules.CircularShiftModule;
 
 public class MasterControl {
 

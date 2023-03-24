@@ -1,4 +1,4 @@
-package com.glossarykwic.Modules;
+package com.glossarykwic_adt.Modules;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
