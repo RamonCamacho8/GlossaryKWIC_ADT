@@ -1,6 +1,5 @@
 # GlossaryKWIC_ADT
-# GlossaryKWIC
- 
+
 ```mermaid
 classDiagram
 
