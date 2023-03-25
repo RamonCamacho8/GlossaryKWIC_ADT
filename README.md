@@ -1,0 +1,1 @@
+# GlossaryKWIC_ADT
