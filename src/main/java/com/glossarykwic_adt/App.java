@@ -2,54 +2,37 @@ package com.glossarykwic_adt;
 
 import java.io.File;
 import java.io.IOException;
+import java.lang.reflect.Array;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Set;
 
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.text.PDFTextStripper;
+
+import com.glossarykwic_adt.Modules.Input;
+import com.glossarykwic_adt.Modules.KWcounter;
+import com.glossarykwic_adt.Modules.KWfromFile;
+import com.glossarykwic_adt.Modules.KWgenerator;
+import com.glossarykwic_adt.Modules.Output;
 
 
 public class App {
     
     public static void main(String[] args) throws IOException{
-        //MasterControl mc = new MasterControl();
 
-        /*mc.getModuleByName("Input").run(null);
-        mc.getModuleByName("CircularShift").run(mc.getModuleByName("Input"));
-        mc.getModuleByName("Alphabetizer").run(mc.getModuleByName("CircularShift"));
-        mc.getModuleByName("Output").run(mc.getModuleByName("Alphabetizer"));*/
-        //Loading an existing document
-        HashMap<Integer, String> pageTextMap;
-        try {
-            // Load the PDF document
-            PDDocument document = PDDocument.load(new File("src/main/java/com/glossarykwic_adt/persistence/Document.pdf"));
+        Input input = new Input();
+        KWgenerator kw_Generator = new KWfromFile();
+        KWcounter kw_Counter = new KWcounter("KeywordCounter");
+        Output output = new Output();
 
-            // Create a HashMap to store the page number and its corresponding text
-            pageTextMap = new HashMap<Integer, String>();
+        String pdfName = "Document2";
+        HashMap<Integer,String> text = input.read(pdfName);
+        ArrayList<String> keywords = kw_Generator.read("case_1");
 
-            // Create a PDFTextStripper object to extract the text from the pages
-            PDFTextStripper textStripper = new PDFTextStripper();
+        HashMap<String,Set<Integer>> glossary = kw_Counter.run(text, keywords);
+        output.write(pdfName,glossary);
 
-            // Loop through each page in the document
-            for (int i = 1; i <= document.getNumberOfPages(); i++) {
-                // Set the current page number for the text stripper
-                textStripper.setStartPage(i);
-                textStripper.setEndPage(i);
 
-                // Extract the text from the current page
-                String pageText = textStripper.getText(document);
-
-                // Add the page number and text to the HashMap
-                pageTextMap.put(i, pageText);
-            }
-
-            // Print the HashMap
-            System.out.println(pageTextMap);
-
-            // Close the PDF document
-            document.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        
     }
 }

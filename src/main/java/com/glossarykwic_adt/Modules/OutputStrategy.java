@@ -1,7 +1,8 @@
 package com.glossarykwic_adt.Modules;
 
-import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Set;
 
 public interface OutputStrategy {
-    public void write(ArrayList<ArrayList<String>> data);
+    public void write(String filename,HashMap<String,Set<Integer>> gloassary);
 }

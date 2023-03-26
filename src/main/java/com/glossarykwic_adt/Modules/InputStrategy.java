@@ -1,8 +1,8 @@
 package com.glossarykwic_adt.Modules;
 
-import java.util.ArrayList;
+import java.util.HashMap;
 
 public interface InputStrategy {
-    public ArrayList<ArrayList<String>> read();
-    public ArrayList<ArrayList<String>> read(String filename, String wordsFileName);
+    public HashMap<Integer,String> read(String filename);
+  
 }

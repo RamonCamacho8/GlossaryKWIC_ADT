@@ -1,26 +1,20 @@
 package com.glossarykwic_adt.Modules;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Set;
 
 public abstract class IModule {
-    protected ArrayList<ArrayList<String>> lines;
+
+    
     protected String name;
     
-    public IModule() {
-        lines = new ArrayList<ArrayList<String>>();
-        
-    }
+
     public IModule(String name) {
-        lines = new ArrayList<ArrayList<String>>();
         this.name = name;
     }
 
-    public abstract void run(IModule module);
-    
-
-    public ArrayList<ArrayList<String>> getData(){
-        return lines;
-    }
+    public abstract HashMap<String,Set<Integer>> run(HashMap<Integer,String> text, ArrayList<String> keywords);
 
     public String getName() {
         return name;
