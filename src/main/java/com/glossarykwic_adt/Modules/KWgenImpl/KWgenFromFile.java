@@ -1,14 +1,18 @@
-package com.glossarykwic_adt.Modules;
+package com.glossarykwic_adt.Modules.KWgenImpl;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
+import java.util.Set;
 
-public class KWfromFile implements KWgenerator {
+public class KWgenFromFile implements KWgenStrategy {
+
+    
 
     @Override
-    public ArrayList<String> read(String filename) {
+    public LinkedHashMap<String,Set<Integer>> read(String filename) {
         ArrayList<String> keywords = new ArrayList<String>();
         String fileDirectory = "src/main/java/com/glossarykwic_adt/persistence/"+filename+".txt";
 
@@ -23,7 +27,13 @@ public class KWfromFile implements KWgenerator {
             e.printStackTrace();
         }
 
-        return keywords;
+        LinkedHashMap<String,Set<Integer>> mappedkW = new LinkedHashMap<String,Set<Integer>>();
+
+        for (int i = 0; i < keywords.size(); i++) {
+            mappedkW.put(keywords.get(i), null);
+        }
+
+        return mappedkW;
 
     }
     

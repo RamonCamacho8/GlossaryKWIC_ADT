@@ -1,8 +1,9 @@
-package com.glossarykwic_adt.Modules;
+package com.glossarykwic_adt.Modules.InputImpl;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.HashMap;
+import java.text.Normalizer;
+import java.util.LinkedHashMap;
 
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.text.PDFTextStripper;
@@ -10,8 +11,8 @@ import org.apache.pdfbox.text.PDFTextStripper;
 public class InputFromPDF implements InputStrategy  {
 
     @Override
-    public HashMap<Integer,String> read(String filename) {
-        HashMap<Integer, String> mappedText = new HashMap<Integer, String>();
+    public LinkedHashMap<Integer,String> read(String filename) {
+        LinkedHashMap<Integer, String> mappedText = new LinkedHashMap<Integer, String>();
 
         try {
             // Load the PDF document
@@ -30,7 +31,10 @@ public class InputFromPDF implements InputStrategy  {
 
                 // Extract the text from the current page
                 String pageText = textStripper.getText(document);
-
+                pageText = pageText.toLowerCase();
+                
+                pageText = Normalizer.normalize(pageText, Normalizer.Form.NFKD);
+                pageText = pageText.replaceAll("[^\\p{ASCII}]", "").replaceAll("[\\p{Punct}]?", "");
                 // Add the page number and text to the HashMap
                 mappedText.put(i, pageText);
             }
