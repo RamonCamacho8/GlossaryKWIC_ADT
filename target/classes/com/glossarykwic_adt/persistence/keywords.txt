@@ -1,2 +1,2 @@
-objeto
-estructura
+objeto 
+estructura AND arquitectura

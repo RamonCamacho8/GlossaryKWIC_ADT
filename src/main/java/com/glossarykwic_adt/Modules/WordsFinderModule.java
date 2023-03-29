@@ -33,10 +33,42 @@ public class WordsFinderModule extends IModule {
         text = module.getText();
         keywords = module.getKeywords();
 
-        for(String keyword : keywords.keySet()) {
-            keywords.put(keyword, getPages(keyword, text));
-        }
+        keywordsPagesFinder();
         
+    }
+
+    private void keywordsPagesFinder(){
+
+        for(String keyword : keywords.keySet()) {
+            if(keyword.contains(" AND "))
+                keywords.put(keyword, getPagesWithAND(keyword, text));
+            else
+                keywords.put(keyword, getPages(keyword, text));
+
+        }
+
+    }
+
+    private Set<Integer> getPagesWithAND(String keyword, LinkedHashMap<Integer, String> text){
+        Set<Integer> pages = new HashSet<Integer>();
+        LinkedHashMap<Integer, String> tempText = new LinkedHashMap<Integer, String>(text);
+        String[] keywords = keyword.split(" AND ");
+
+         // add pattern to match the keyword with or without punctuation
+        
+        //For every keyword in the AND statement we split the value String of the text by . and then we check if the keyword is in each sentence
+       
+        for(Integer page : tempText.keySet()) {
+            String[] sentences = tempText.get(page).split("\\.");
+            for(String sentence : sentences){
+                if(sentence.contains(keywords[0]) && sentence.contains(keywords[1])){
+                    pages.add(page);
+                    //We remove the sentence from the text so we don't count it again
+                    tempText.put(page, tempText.get(page).replace(sentence, ""));
+                }
+            }
+        }
+        return pages;
     }
 
 

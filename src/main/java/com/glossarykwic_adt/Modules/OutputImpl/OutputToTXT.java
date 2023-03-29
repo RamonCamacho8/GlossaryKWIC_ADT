@@ -20,6 +20,7 @@ public class OutputToTXT implements OutputStrategy{
         try {
             FileWriter myWriter = new FileWriter(fileDirectory);
             myWriter.write("Palabra:" + " ".repeat(lineLength - "Palabra".length()) + "Paginas:" + "\r");
+            //Iterates over the words in the glossary and writes them to the file with the pages they appear in
             for(String key : glossary.keySet()){
                 myWriter.write(lineFormater(key,glossary.get(key)));
             }
