@@ -226,7 +226,3 @@ mvn test
 - Apache PDFBox 2.0.27 (PDF text extraction)
 - JUnit 4.11 (testing)
 
-## License
-
-This project is licensed under the MIT License. Feel free to use and modify it as needed.
-
